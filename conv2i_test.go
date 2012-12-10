@@ -182,6 +182,187 @@ func Test_Conv2uint32(t *testing.T) {
     }
 }
 
+func Test_Conv2uint(t *testing.T) {
+    in1 := uint64(22)
+    out1, err := Conv2uint(in1)
+    if err != nil && out1!= uint(in1) {
+        t.Logf("convert a uint64 to a uint failed")
+        t.Fail()
+    }
+
+    in2 := uint32(222)
+    out2, err := Conv2uint(in2)
+    if err != nil && out2!= uint(in2) {
+        t.Logf("convert a uint32 to a uint failed")
+        t.Fail()
+    }
+
+    in3 := uint16(11)
+    out3, err := Conv2uint(in3)
+    if err != nil && out3!= uint(in3) {
+        t.Logf("convert a uint16 to a uint failed")
+        t.Fail()
+    }
+
+    in4 := uint8(11)
+    out4, err := Conv2uint(in4)
+    if err != nil && out4 != uint(in4) {
+        t.Logf("convert a uint8 to a uint failed")
+        t.Fail()
+    }
+
+    in5 := uint(11)
+    out5, err := Conv2uint(in5)
+    if err != nil && out5 != uint(in5) {
+        t.Logf("convert a uint to a uint failed")
+        t.Fail()
+    }
+
+    in6 := int64(11)
+    out6, err := Conv2uint(in6)
+    if err != nil && out6 != uint(in6) {
+        t.Logf("convert a int64 to a uint failed")
+        t.Fail()
+    }
+
+    in7 := int32(11111)
+    out7, err := Conv2uint(in7)
+    if err != nil && out7 != uint(in7) {
+        t.Logf("convert a int32 to a uint failed")
+        t.Fail()
+    }
+
+    in8 := int16(1611)
+    out8, err := Conv2uint(in8)
+    if err != nil && out8 != uint(in8) {
+        t.Logf("convert a int16 to a uint failed")
+        t.Fail()
+    }
+
+    in9 := int8(16)
+    out9, err := Conv2uint(in9)
+    if err != nil && out9 != uint(in9) {
+        t.Logf("convert a int8 to a uint failed")
+        t.Fail()
+    }
+
+    in10 := int(1234223)
+    out10, err := Conv2uint(in10)
+    if err != nil && out10 != uint(in10) {
+        t.Logf("convert a int to a uint failed")
+        t.Fail()
+    }
+
+    // boundary test
+    in_maxint32 := INT32MAX
+    out_maxint32, err := Conv2uint(in_maxint32)
+    if err != nil && out_maxint32 != uint(in_maxint32) {
+        t.Logf("convert a max int32 to a uint failed")
+        t.Fail()
+    }
+
+    _, err = Conv2uint(-1)
+    if err == nil {
+        t.Logf("convert a -1 to unint, failed")
+        t.Fail()
+    }
+
+    _, err = Conv2uint(INT64MAX)
+    if err == nil {
+        t.Logf("convert a man int64 to unint, failed")
+        t.Fail()
+    }
+}
+
+
+func Test_Conv2int(t *testing.T) {
+    in1 := uint64(22)
+    out1, err := Conv2int(in1)
+    if err != nil && out1!= int(in1) {
+        t.Logf("convert a uint64 to a int failed")
+        t.Fail()
+    }
+
+    in2 := uint32(222)
+    out2, err := Conv2int(in2)
+    if err != nil && out2!= int(in2) {
+        t.Logf("convert a uint32 to a int failed")
+        t.Fail()
+    }
+
+    in3 := uint16(11)
+    out3, err := Conv2int(in3)
+    if err != nil && out3!= int(in3) {
+        t.Logf("convert a uint16 to a int failed")
+        t.Fail()
+    }
+
+    in4 := uint8(11)
+    out4, err := Conv2int(in4)
+    if err != nil && out4 != int(in4) {
+        t.Logf("convert a uint8 to a int failed")
+        t.Fail()
+    }
+
+    in5 := uint(11)
+    out5, err := Conv2int(in5)
+    if err != nil && out5 != int(in5) {
+        t.Logf("convert a uint to a int failed")
+        t.Fail()
+    }
+
+    in6 := int64(11)
+    out6, err := Conv2int(in6)
+    if err != nil && out6 != int(in6) {
+        t.Logf("convert a int64 to a int failed")
+        t.Fail()
+    }
+
+    in7 := int32(11111)
+    out7, err := Conv2int(in7)
+    if err != nil && out7 != int(in7) {
+        t.Logf("convert a int32 to a int failed")
+        t.Fail()
+    }
+
+    in8 := int16(1611)
+    out8, err := Conv2int(in8)
+    if err != nil && out8 != int(in8) {
+        t.Logf("convert a int16 to a int failed")
+        t.Fail()
+    }
+
+    in9 := int8(16)
+    out9, err := Conv2int(in9)
+    if err != nil && out9 != int(in9) {
+        t.Logf("convert a int8 to a int failed")
+        t.Fail()
+    }
+
+    in10 := int(1234223)
+    out10, err := Conv2int(in10)
+    if err != nil && out10 != int(in10) {
+        t.Logf("convert a int to a int failed")
+        t.Fail()
+    }
+
+    // boundary test
+    in_maxint32 := INT32MAX
+    out_maxint32, err := Conv2int(in_maxint32)
+    if err != nil && out_maxint32 != int(in_maxint32) {
+        t.Logf("convert a max int32 to a int failed")
+        t.Fail()
+    }
+
+    _, err = Conv2int(INT64MAX)
+    if err == nil {
+        t.Logf("convert a man int64 to int, failed")
+        t.Fail()
+    }
+}
+
+
+
 func Test_Conv2uint16(t *testing.T) {
     in1 := uint64(22)
     out1, err := Conv2uint16(in1)

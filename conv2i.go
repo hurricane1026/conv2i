@@ -18,6 +18,113 @@ const (
     INTMAX = int(UINTMAX >> 1)
 )
 
+func Conv2uint (in interface{}) (out uint, err error) {
+    if i, ok := in.(uint64); ok {
+        if i == uint64(uint(i)) {
+            out = uint(i)
+        } else {
+            err = errors.New("input is bigger than range of uint")
+        }
+    } else if i, ok := in.(uint32); ok {
+        out = uint(i)
+
+    } else if i, ok := in.(uint16); ok {
+        out = uint(i)
+
+    } else if i, ok := in.(uint8); ok {
+        out = uint(i)
+
+    } else if i, ok := in.(uint); ok {
+        out = i
+
+    } else if i, ok := in.(int64); ok {
+        if i >= 0 && i == int64(uint(i)) {
+            out = uint(i)
+        } else {
+            err = errors.New("input is a negative or it is bigger than range of uint, can not convert to uint")
+        }
+    } else if i, ok := in.(int32); ok {
+        if i >= 0 {
+            out = uint(i)
+        } else {
+            err = errors.New("input is a negative , can not convert to uint")
+        }
+    } else if i, ok := in.(int16); ok {
+        if i >= 0 {
+            out = uint(i)
+        } else {
+            err = errors.New("input is a negative , can not convert to uint")
+        }
+    } else if i, ok := in.(int8); ok {
+        if i >= 0 {
+            out = uint(i)
+        } else {
+            err = errors.New("input is a negative , can not convert to uint")
+        }
+    } else if i, ok := in.(int); ok {
+        if i >= 0 {
+            out = uint(i)
+        } else {
+            err = errors.New("input is a negative , can not convert to uint")
+        }
+    } else {
+        err = errors.New("input is not a integer, can not convert to uint")
+    }
+    return
+
+}
+
+func Conv2int (in interface{}) (out int, err error) {
+    if i, ok := in.(uint64); ok {
+        if i == uint64(int(i)) {
+            out = int(i)
+        } else {
+            err = errors.New("input is bigger than range of int")
+        }
+    } else if i, ok := in.(uint32); ok {
+        if i == uint32(int(i)) {
+            out = int(i)
+        } else {
+            err = errors.New("input is bigger than range of int")
+        }
+
+    } else if i, ok := in.(uint16); ok {
+        out = int(i)
+
+    } else if i, ok := in.(uint8); ok {
+        out = int(i)
+
+    } else if i, ok := in.(uint); ok {
+        if i == uint(int(i)) {
+            out = int(i)
+        } else {
+            err = errors.New("input is bigger than range of int")
+        }
+
+    } else if i, ok := in.(int64); ok {
+        if i == int64(int(i)) {
+            out = int(i)
+        } else {
+            err = errors.New("input is bigger than range of int")
+        }
+
+    } else if i, ok := in.(int32); ok {
+        out = int(i)
+
+    } else if i, ok := in.(int16); ok {
+        out = int(i)
+
+    } else if i, ok := in.(int8); ok {
+        out = int(i)
+
+    } else if i, ok := in.(int); ok {
+        out = i
+    } else {
+        err = errors.New("input is not a integer, can not convert to int")
+    }
+    return
+}
+
 func Conv2uint64 (in interface{}) (out uint64, err error) {
     if i, ok := in.(uint64); ok {
         out = i
