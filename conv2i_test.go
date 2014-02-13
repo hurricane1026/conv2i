@@ -2,6 +2,7 @@ package conv2i
 
 import (
     "testing"
+    "runtime"
 )
 
 func Test_Conv2uint64(t *testing.T) {
@@ -268,7 +269,7 @@ func Test_Conv2uint(t *testing.T) {
     }
 
     _, err = Conv2uint(INT64MAX)
-    if err == nil {
+    if err == nil && runtime.GOARCH == "386" {
         t.Logf("convert a man int64 to unint, failed")
         t.Fail()
     }
@@ -355,7 +356,7 @@ func Test_Conv2int(t *testing.T) {
     }
 
     _, err = Conv2int(INT64MAX)
-    if err == nil {
+    if err == nil && runtime.GOARCH == "386" {
         t.Logf("convert a man int64 to int, failed")
         t.Fail()
     }
